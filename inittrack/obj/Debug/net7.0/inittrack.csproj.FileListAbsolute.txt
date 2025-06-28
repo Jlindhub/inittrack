@@ -1,0 +1,14 @@
+F:\github repos\inittrack\inittrack\bin\Debug\net7.0\inittrack.exe
+F:\github repos\inittrack\inittrack\bin\Debug\net7.0\inittrack.deps.json
+F:\github repos\inittrack\inittrack\bin\Debug\net7.0\inittrack.runtimeconfig.json
+F:\github repos\inittrack\inittrack\bin\Debug\net7.0\inittrack.dll
+F:\github repos\inittrack\inittrack\bin\Debug\net7.0\inittrack.pdb
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.GeneratedMSBuildEditorConfig.editorconfig
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.AssemblyInfoInputs.cache
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.AssemblyInfo.cs
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.csproj.CoreCompileInputs.cache
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.dll
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\refint\inittrack.dll
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.pdb
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\inittrack.genruntimeconfig.cache
+F:\github repos\inittrack\inittrack\obj\Debug\net7.0\ref\inittrack.dll
