@@ -1,7 +1,4 @@
 ﻿
-
-//todo: add changeable initiative list
-
 int roundNumber = 0;
 List<Unit> deadUnits = new List<Unit>(); //todo: dead unit printout
 List<Unit> initiativeTrack = new List<Unit>();
@@ -10,7 +7,7 @@ while (true)
 {
     if (unitNumberDictionary.Count == 0)
     {
-        Console.WriteLine("unit list is empty, running a ton of add cycles, manual stop will be required.");
+        Console.WriteLine("unit list is empty, running a ton of adding cycles, manual stop will be required.");
         UnitAdder(1000);
         continue;
     }
@@ -20,22 +17,32 @@ while (true)
     Console.WriteLine("round number: " + roundNumber);
     InitiativeSort();//round start
     InitiativePrint();
-    
-    foreach (var unit in initiativeTrack)
+    foreach (var u in initiativeTrack)
     {
+        u.HasActedThisTurn = false;
+    }
+
+    for (var i = 0; i < initiativeTrack.Count; i++)
+    {
+        var unit = initiativeTrack[i];
+        if (unit.HasActedThisTurn) continue;
         Console.WriteLine($"currently:\n{unit.InitiativePlace}\t{unit.Init}\t{unit.Number}\t{unit.Name} 's turn.");
         Console.WriteLine($"str: {unit.Str}/{unit.Ostr}, dex: {unit.Dex}/{unit.ODex}, end: {unit.End}/{unit.OEnd}");
         Console.WriteLine("what do you wish to do? [O]pen input menu, or any key for next unit.");
         var key = Console.ReadKey();
         Console.WriteLine("");
-        if(key.Key==ConsoleKey.O){MainInput();}
+        if (key.Key == ConsoleKey.O){MainInput();}
+
         Console.WriteLine("turn over. any single-turn modifiers will be reset.");
-        unit.Init += unit.TimesDodged*2;
+        unit.HasActedThisTurn = true;
+        unit.Init += unit.TimesDodged * 2;
         unit.RollMod = 0;
+        InitiativeSort();
         InitiativePrint();
     }
 
     Console.WriteLine("Round over. next round begins.");
+    
 }
 
 
@@ -188,10 +195,10 @@ void InitiativeSort()
 void InitiativePrint() 
 {
     Console.WriteLine("round order:");
-    Console.WriteLine("#\tINIT\tUNIT#\tNAME");
+    Console.WriteLine("#\tINIT\tUNIT#\tNAME\tDONE?");
     foreach (var unit in initiativeTrack)
     {
-        Console.WriteLine($"{unit.InitiativePlace}\t{unit.Init}\t{unit.Number}\t{unit.Name}");
+        Console.WriteLine($"{unit.InitiativePlace}\t{unit.Init}\t{unit.Number}\t{unit.Name}\t{(unit.HasActedThisTurn ? "DONE" : "NOT DONE")}");
     }
 
 }
@@ -255,6 +262,7 @@ class Unit
     public int OEnd;
     public int End;
     public int RollMod;
+    public bool HasActedThisTurn;
     public Unit(string name, int init, int str, int dex, int end, int rollMod, int unitNumber)
     {
         InitiativePlace = 0;
@@ -270,6 +278,7 @@ class Unit
         ODex = dex;
         OEnd = end;
         RollMod = rollMod;
+        HasActedThisTurn = false;
     }
 
     public void QuickDodge()
