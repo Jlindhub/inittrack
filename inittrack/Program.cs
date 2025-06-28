@@ -16,17 +16,18 @@ while (true)
     roundNumber++;
     Console.WriteLine("round number: " + roundNumber);
     InitiativeSort();//round start
-    InitiativePrint();
     foreach (var u in initiativeTrack)
     {
         u.HasActedThisTurn = false;
     }
+    InitiativePrint();
+    
 
     for (var i = 0; i < initiativeTrack.Count; i++)
     {
         var unit = initiativeTrack[i];
         if (unit.HasActedThisTurn) continue;
-        Console.WriteLine($"currently:\n{unit.InitiativePlace}\t{unit.Init}\t{unit.Number}\t{unit.Name} 's turn.");
+        Console.WriteLine($"\n \t currently:\n{unit.InitiativePlace}\t{unit.Init}\t{unit.Number}\t{unit.Name} 's turn.\n ");
         Console.WriteLine($"str: {unit.Str}/{unit.Ostr}, dex: {unit.Dex}/{unit.ODex}, end: {unit.End}/{unit.OEnd}");
         Console.WriteLine("what do you wish to do? [O]pen input menu, or any key for next unit.");
         var key = Console.ReadKey();
@@ -41,7 +42,7 @@ while (true)
         InitiativePrint();
     }
 
-    Console.WriteLine("Round over. next round begins.");
+    Console.WriteLine("\n \n \n \t Round over. next round begins.\n \n \n");
     
 }
 
@@ -51,7 +52,7 @@ void MainInput()
     bool inputLoop = true;
     while (inputLoop)
     {
-        Console.WriteLine("any # should be replaced by the number of an unit. \n commands:");
+        Console.WriteLine("\t commands:");
         Console.WriteLine("[R]ESET: new combat (resets to empty lists!)");
         Console.WriteLine("[D]ODGE #: quickly applies dodge penalties to unit specified.");
         Console.WriteLine("[E]DIT #: edit unit number (init, str, etc)");
@@ -112,7 +113,7 @@ void MainInput()
 
 void Edit(Unit u)
 {
-    Console.WriteLine("editing unit {0}, #{1}. \n commands: \n INIT \n OINIT \n STR \n DEX \n END, \n MOD", u.Name, u.Number);
+    Console.WriteLine("editing unit {0}, #{1}. \n \t commands: \n INIT \n OINIT \n STR \n DEX \n END, \n MOD", u.Name, u.Number);
     switch (CNorm())
     {
         case "INIT":
@@ -151,7 +152,7 @@ void UnitAdder(int repeats){
         
     for (int i = 0; i < repeats; i++)
     {
-        Console.WriteLine("unit number: " + (i+1) + ", name?(STOP to stop early)");
+        Console.WriteLine("\nunit number: " + (i+1) + ", name?(STOP to stop early)");
         string tempName = Console.ReadLine() ?? "unnamed";
         if (tempName.ToUpperInvariant() == "STOP"){Console.WriteLine("stopping additions.");break;}
         int tempIni = StatPrompt("initiative");
@@ -194,7 +195,7 @@ void InitiativeSort()
 
 void InitiativePrint() 
 {
-    Console.WriteLine("round order:");
+    Console.WriteLine("\n \n \t round order:");
     Console.WriteLine("#\tINIT\tUNIT#\tNAME\tDONE?");
     foreach (var unit in initiativeTrack)
     {
